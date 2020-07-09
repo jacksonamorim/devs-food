@@ -1,0 +1,36 @@
+import styled from 'styled-components';
+
+export const Container = styled.div`
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #136713;
+`;
+
+export const Logo = styled.img`
+    width: auto;
+    height: 70px;
+`;
+
+export const SearchInput = styled.input`
+    border: 0;
+    border-radius: 25px;
+    width: ${props=>props.active ? 300 : 0}px;
+    height: 50px;
+    font-size: 15px;
+    background-color: #FFF;
+    background-image: url('/assets/search.png');
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    outline: none;
+    padding-left: 50px;
+    transition: all ease .5s;
+    cursor: pointer;
+
+    &:focus {
+        cursor: text;
+    }
+`;
