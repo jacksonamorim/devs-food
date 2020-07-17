@@ -8,7 +8,7 @@ export const Container = styled.div`
     align-items: center;
     margin-right: 10px;
     border-radius: 20px;
-    background-color: ${props=>props.active == props.id ? '#FFFFFF' : '#AAE09A'} ;
+    background-color: ${props=>props.active === props.id ? '#FFFFFF' : '#AAE09A'} ;
     cursor: pointer;
     transition: all ease .4s;
 `;
