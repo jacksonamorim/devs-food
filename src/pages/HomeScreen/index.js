@@ -5,7 +5,9 @@ import {
     CategoryArea,
     CategoryList,
     ProductArea,
-    ProductList
+    ProductList,
+    ProductPaginationArea,
+    ProductPaginationItem
 } from './styled';
 import ReactToolTip from 'react-tooltip';
 
@@ -20,12 +22,16 @@ export default () => {
     const [headerSearch, setHeaderSearch] = useState('');
     const [categories, setCategories] = useState([]);
     const [products, setProducts] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
     const [activeCategory, setActiveCategory] = useState(0);
+    const [activePage, setActivePage] = useState(0);
 
     const getProducts = async () => {
         const prods = await api.getProducts();
         if(prods.error == '') {
             setProducts(prods.result.data);
+            setTotalPages(prods.result.pages);
+            setActivePage(prods.result.page);
         }
     }
 
@@ -41,8 +47,9 @@ export default () => {
     }, []);
 
     useEffect(()=>{
+        setProducts([]);
         getProducts();
-    }, [activeCategory]);
+    }, [activeCategory, activePage]);
 
     return (
         <Container>
@@ -77,6 +84,22 @@ export default () => {
                         ))};
                     </ProductList>
                 </ProductArea>
+            }
+
+            {totalPages > 0 &&
+                <ProductPaginationArea>
+                    {Array(10).fill(0).map((item, index)=>(
+                        <ProductPaginationItem 
+                            key={index}
+                            active={activePage}
+                            current={index + 1}
+                            onClick={()=>setActivePage(index + 1)}
+                        >
+                            {index + 1} 
+                        </ProductPaginationItem>
+                    ))}
+                </ProductPaginationArea>
+
             }
         </Container>
     );
