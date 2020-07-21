@@ -14,3 +14,13 @@ export const CategoryList = styled.div`
     display: flex;
     margin-top: 10px;
 `;
+
+export const ProductArea = styled.div`
+    margin: 20px 0 10px 0;
+`;
+
+export const ProductList = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+`;
