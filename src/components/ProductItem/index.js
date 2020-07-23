@@ -6,9 +6,13 @@ import {
     ProductButtonArea
 } from './styled';
 
-export default ({data}) => {
+export default ({data, onClick}) => {
+    const handleClick = () => {
+        onClick(data);
+    }
+
     return (
-        <Container>
+        <Container onClick={handleClick}>
             <ProductPhotoArea>
                 <img src={data.image}/>
             </ProductPhotoArea>
