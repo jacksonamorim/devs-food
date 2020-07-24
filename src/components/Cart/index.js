@@ -5,7 +5,14 @@ import {
     CartHeader,
     CartIcon,
     CartText,
-    CartBody
+    CartBody,
+    ProductArea,
+    ProductItem,
+    ProductPhoto,
+    ProductInfoArea,
+    ProductName,
+    ProductPrice,
+    ProductQuantityArea,
 } from './styled';
 
 export default () => {
@@ -25,6 +32,21 @@ export default () => {
                 }
             </CartHeader>
             <CartBody show={show}>
+                <ProductArea>
+                    {products.map((item, index)=>(
+                        <ProductItem>
+                            <ProductPhoto src={item.image}/>
+                            <ProductInfoArea>
+                                <ProductName>{item.name}</ProductName>
+                                <ProductPrice>R$ {item.price.toFixed(2)}</ProductPrice>
+                            </ProductInfoArea>
+                            <ProductQuantityArea>
+                                
+                            </ProductQuantityArea>
+                        </ProductItem>
+                    ))}
+                    
+                </ProductArea>
             </CartBody>
         </CartArea>
     );
