@@ -13,6 +13,8 @@ import {
     ProductName,
     ProductPrice,
     ProductQuantityArea,
+    ProductQtIcon,
+    ProductQtText
 } from './styled';
 
 export default () => {
@@ -22,6 +24,11 @@ export default () => {
     const handleCartClick = () => {
         setShow(!show);
     } 
+
+    const handleProductChange = () => {
+
+    }
+
     return(
         <CartArea>
             <CartHeader onClick={handleCartClick}>
@@ -31,7 +38,7 @@ export default () => {
                     <CartIcon src="/assets/down.png"/>
                 }
             </CartHeader>
-            <CartBody show={show}>
+            <CartBody show={true}>
                 <ProductArea>
                     {products.map((item, index)=>(
                         <ProductItem>
@@ -41,7 +48,15 @@ export default () => {
                                 <ProductPrice>R$ {item.price.toFixed(2)}</ProductPrice>
                             </ProductInfoArea>
                             <ProductQuantityArea>
-                                
+                                <ProductQtIcon 
+                                    src="/assets/minus.png"
+                                    onClick={()=>handleProductChange(index, '-')}
+                                />
+                                <ProductQtText>{item.qt}</ProductQtText>
+                                <ProductQtIcon 
+                                    src="/assets/plus.png"
+                                    onClick={()=>handleProductChange(index, '+')}
+                                />
                             </ProductQuantityArea>
                         </ProductItem>
                     ))}
