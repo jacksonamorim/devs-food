@@ -24,10 +24,12 @@ export const CartIcon = styled.img`
 `;
 
 export const CartText = styled.div`
+    flex: 1;
     color: #FFF;
     font-size: 17px;
 `;
 
 export const CartBody = styled.div`
-
+    display: ${props => props.show ? 'flex' : 'none'};
+    
 `;
