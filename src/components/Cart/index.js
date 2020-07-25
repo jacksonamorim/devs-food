@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {
     CartArea,
     CartHeader,
@@ -18,6 +18,7 @@ import {
 } from './styled';
 
 export default () => {
+    const dispatch = useDispatch();
     const products = useSelector(state => state.cart.products);
     const [show, setShow] = useState(false);
 
@@ -25,8 +26,11 @@ export default () => {
         setShow(!show);
     } 
 
-    const handleProductChange = () => {
-
+    const handleProductChange = (key, type) => {
+        dispatch({
+            type: 'CHANGE_PRODUCT',
+            payload: {key, type}
+        })
     }
 
     return(
@@ -38,7 +42,7 @@ export default () => {
                     <CartIcon src="/assets/down.png"/>
                 }
             </CartHeader>
-            <CartBody show={true}>
+            <CartBody show={show}>
                 <ProductArea>
                     {products.map((item, index)=>(
                         <ProductItem>
